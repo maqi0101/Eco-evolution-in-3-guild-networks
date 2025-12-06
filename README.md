@@ -15,7 +15,7 @@ The code presented in this repository constitutes the core for simulating the pa
 
 ## Core Programs
 
-- **Model_Core.m: Matlab main program for generating data for ternary diagrams (requires saving corresponding network metric data as a txt file, e.g., “Directionality.txt”).
+- **Model_Core.m**: Matlab main program for generating data for ternary diagrams (requires saving corresponding network metric data as a txt file, e.g., “Directionality.txt”).
 - **Draw_Ternary.py**: Python program used to read txt file data and draw it on ternary diagrams (note that "Draw_Ternary.py" and " Directionality.txt" must be placed in the same folder).
 
 ## External Library

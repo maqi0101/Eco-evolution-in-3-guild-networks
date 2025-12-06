@@ -2,7 +2,7 @@
 The code presented in this repository constitutes the core for simulating the paper titled "Balancing selection pressures shapes trait evolution and resilience in three-guild networks."
 
 # Code Description
-Draw_Ternary.py: Python code for drawing ternary diagrams.
+##Draw_Ternary.py: Python code for drawing ternary diagrams.
 coevolution.m: Matlab code for calculates the new species traits based on coevolution.
 LG_PHM.m: Matlab function code describing Community Dynamics (differential equations Eqn. 1a-1c).
 get_FDQ.m: Matlab code for computes functional diversity.

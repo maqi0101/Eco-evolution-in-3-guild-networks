@@ -3,9 +3,7 @@ The code presented in this repository constitutes the core for simulating the pa
 
 # Code Description
 Draw_Ternary.py: Python code for drawing ternary diagrams.
-
-coevolution.m: Matlab code for calculates the new species traits based on coevolution and identifies the plant with the least evolutionary effect on each animal.
-
+coevolution.m: Matlab code for calculates the new species traits based on coevolution.
 LG_PHM.m: Matlab function code describing Community Dynamics (differential equations Eqn. 1a-1c).
 get_FDQ.m: Matlab code for computes functional diversity.
 get_jacmat.m: Matlab code for obtaining the Jacobian matrix.

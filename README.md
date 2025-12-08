@@ -21,7 +21,7 @@ The code and data presented in this repository constitutes the core for simulati
 
 ## Data Description
 
-- **Measures of empirical ecological networks.csv**: Empirical ecological network data were obtained from the Web of Life database (www.web-of-life.es) and the Interaction Web Database (as referenced in Andreazzi et al. 2017). The dataset includes 107 plant–pollinator mutualistic networks and 22 plant–herbivore antagonistic networks spanning a wide range of geographical regions.
+- **Measures of empirical ecological networks.csv**: Empirical ecological network data were obtained from the Web of Life database (www.web-of-life.es) and the Interaction Web Database (as referenced in Andreazzi et al. 2017 [Andreazzi et al. 2017](https://doi.org/10.1086/692110)). The dataset includes 107 plant–pollinator mutualistic networks and 22 plant–herbivore antagonistic networks spanning a wide range of geographical regions.
 
 ## External Library
 

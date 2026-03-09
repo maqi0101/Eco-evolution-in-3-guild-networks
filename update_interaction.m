@@ -1,7 +1,7 @@
 % This function is used to update interspecies interactions
 % (Update the interspecific trait matching, and rewiring one link)
 
-function [match_PH,match_PM]=updata_interaction(Sp,Sh,Sm,trait,index_P2A,match_PM,match_PH,sigma,eta)
+function [match_PH,match_PM]=update_interaction(Sp,Sh,Sm,trait,index_P2A,match_PM,match_PH,sigma,eta)
 
 % species traits after coevolution
 Z_P=trait(1:Sp);             % plant
@@ -28,16 +28,16 @@ end
 
 %%
 % calculate the difference of trait between animals and their potential plant partners
-TD_HP=zeros(Sh,Sp);
+TD_HP=inf(Sh,Sp);
 for i=1:Sh
     for j=1:Sp
-        if match_PH(j,i)==0  % Judge whether plant j is a potential partner of herbivore i
-            TD_HP(i,j)=abs(Z_H(i)-Z_P(j)); % difference of trait
+        if match_PH(j,i)==0  % plant j is a potential partner if currently unlinked
+            TD_HP(i,j)=abs(Z_H(i)-Z_P(j)); % trait difference
         end
     end
 end
 
-TD_MP=zeros(Sm,Sp);
+TD_MP=inf(Sm,Sp);
 for i=1:Sm
     for j=1:Sp
         if match_PM(j,i)==0
@@ -62,13 +62,16 @@ if (Type==1)  % rewiring H->P: herbivore to plant
     TD_old=abs(Z_H(idH)-Z_P(idP_old));  % Record the differences between their trait
     
     deg_old=nnz(match_PH(idP_old,:)); % number of partners of P_j 
-    pr=1/deg_old^eta;  % rewiring probability 
+    pr=1-1/deg_old^eta;  % rewiring probability 
     
-    if rand>pr
-        idP_z=find(match_PH(:,idH)==0, 1); % find out all plants which the animal unconnected
-        if ~isempty(idP_z)
+    if rand < pr
+
+        deg_idH=nnz(match_PH(:,idH));  % check whether the animal have potential interaction partners 
+        if deg_idH < Sp
+
             TD_Hi_z=TD_HP(idH,:); % trait difference between H_i and all its potential plant partners
-            TD_new = min(TD_Hi_z(TD_Hi_z>0)); % find out the smallest trait difference
+            TD_new = min(TD_Hi_z); % find out the smallest trait difference
+
             idP_new = find(TD_Hi_z==TD_new,1); % The ID number of potential plants(P_k) with the best trait match to H_i
 
             if TD_new < TD_old  % Compare trait matching
@@ -89,12 +92,15 @@ else  % rewiring M->P: pollinator to  plant
     TD_old=abs(Z_M(idM)-Z_P(idP_old));  
     
     deg_old=nnz(match_PM(idP_old,:));
-    pr=1/deg_old^eta; 
-    if rand>pr
-        idP_z=find(match_PM(:,idM)==0, 1);
-        if ~isempty(idP_z)
+
+    pr=1-1/deg_old^eta;  
+    if rand < pr
+
+        deg_idM=nnz(match_PM(:,idM));  % check whether the animal have potential interaction partners 
+        if deg_idM < Sp
+
             TD_Mi_z=TD_MP(idM,:);
-            TD_new = min(TD_Mi_z(TD_Mi_z>0));
+            TD_new = min(TD_Mi_z);
             idP_new = find(TD_Mi_z==TD_new,1);
             if TD_new < TD_old
                 match_PM(idP_old,idM)=0;

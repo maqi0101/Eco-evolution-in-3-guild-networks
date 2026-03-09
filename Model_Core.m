@@ -148,7 +148,7 @@ for kk=1:rep
                 end
                 
                 % integration (ecological processes)
-                [t y] = ode45(@(t,y)LG_PHM(t,y,Sp,Sh,Sm,r,delt,alpha_PH,gamma_PM,e,h),[to to+tf],N0);
+                [t y] = ode45(@(t,y)LG_PHM(t,y,Sp,Sh,Sm,r,delt,alpha_PH,gamma_PM,e,h),to:0.1:to+tf,N0);
                 to = t(end);
                 N0=y(end,:)';  % set initial condition for next interval
                 
@@ -202,10 +202,10 @@ for kk=1:rep
                     LD_ant=-sum(dh_ant,2)';
                     
                     % Calculate correlation
-                    corr_LD_ijk=corr(LD_mut',LD_ant','Type','Spearman');
-                    corr_DC_ijk=corr(dc_mut',dc_ant','Type','Spearman');
-                    corr_BIO_ijk=corr(bio_mut',bio_ant','Type','Spearman');
-                    corr_D_B_ijk=corr((dc_mut-dc_ant)',(bio_mut-bio_ant)','Type','Spearman');
+                    corr_LD_ijk(counter+m_tep-counter_max)=corr(LD_mut',LD_ant','Type','Spearman');
+                    corr_DC_ijk(counter+m_tep-counter_max)=corr(dc_mut',dc_ant','Type','Spearman');
+                    corr_BIO_ijk(counter+m_tep-counter_max)=corr(bio_mut',bio_ant','Type','Spearman');
+                    corr_D_B_ijk(counter+m_tep-counter_max)=corr((dc_mut-dc_ant)',(bio_mut-bio_ant)','Type','Spearman');
   
                 end
                 
@@ -328,3 +328,4 @@ writematrix(Arr_Cor_dc, 'Corr_DC.txt', 'Delimiter', ',');
 writematrix(Arr_Cor_bio, 'Corr_BIO.txt', 'Delimiter', ',');
 writematrix(Arr_Cor_d_b, 'Corr_D_B.txt', 'Delimiter', ',');
  
+

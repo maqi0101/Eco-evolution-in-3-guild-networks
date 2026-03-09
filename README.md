@@ -12,7 +12,7 @@ The code and data presented in this repository constitutes the core for simulati
 - **get_modularity.m**: Matlab code for calculates network modularity.
 - **get_wNoda.m**: Matlab code for computes weighted nestedness (WNODA).
 - **trait_match.m**: Matlab code for computes trait matching.
-- **updata_interaction.m**: Matlab code for updates interspecific interactions.
+- **update_interaction.m**: Matlab code for updates interspecific interactions.
 
 ## Core Programs
 
